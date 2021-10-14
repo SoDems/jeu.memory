@@ -26,6 +26,10 @@ var tabResultat = [  /*faire un tableau ac des chiifres de manière aléatoire*/
     [8,7,5,6],
 ];
 
+var oldSelection =[];//ancien click
+var nbAffiche = 0; /*pour savoir où on en est ds notre affichage et savoir si on est sur le premier click ou deuxième*/
+var ready = true;
+
 afficherTableau();
 console.log(tabJeu.length);
 function afficherTableau(){  /* a pour objectif d'afficher le tableau*/
@@ -85,10 +89,32 @@ function getImage(valeur){ /*on va faire un switch case. on fait une fonction ge
 
 
 function verif(bouton){ /*qui va recuperer l'element cliqué*/
-    var ligne = bouton.substr(0,1); /*on va découper le bouton pour rcuperre la ligne et la colonne*/
-    var colonne = bouton.substr(2,1);
-    tabJeu[ligne][colonne] = tabResultat[ligne][colonne]; /*qd on clique sur le tableau tabJeu je dois récuperer les valeurs de tabResultat*/
-    afficherTableau();   /*réafficher notre grille*/
-}
+    if(ready){
+        nbAffiche++;  //on va acrementer des lors qu 'on clique sur 1 btn
+        var ligne = bouton.substr(0,1); /*on va découper le bouton pour rcuperre la ligne et la colonne*/
+        var colonne = bouton.substr(2,1);
+        tabJeu[ligne][colonne] = tabResultat[ligne][colonne]; /*qd on clique sur le tableau tabJeu je dois récuperer les valeurs de tabResultat*/
+        afficherTableau();   /*réafficher notre grille*/
+    
+        if(nbAffiche>1) { //on lance la verification 
+            ready = false;
+            setTimeout(() => {
+                if(tabJeu[ligne][colonne] !== tabResultat[oldSelection[0]][oldSelection[1]]){ //on verifie si la valeur sur laquelle on a cliqué correspond à la valeur du precedent click
+                    tabJeu[ligne][colonne] = 0; //si ca correspond pas alors on va reinitialiser les deux valeurs et on 
+                    tabJeu[oldSelection[0]][oldSelection[1]] = 0;  //réaffiche notre tableau
+                }
+                afficherTableau();
+                ready = true; // tu peux cliquer sur un autre btn
+                nbAffiche = 0;// qd on a finit la verification on réinitialise  nbAffiche à 0 ce qui permet de relancer une vague de click et de vérification
+                oldSelection = [ligne][colonne];
+            },1000)//une seconde
+            
+        } else {
+            oldSelection = [ligne][colonne];//ancien click
 
-/*REPRISE DE LA VIDEO 3 à 8 min 18 s*/
+        }
+    
+    /*on va faire une verification pour voir si les images sont identiques*/
+    }     
+    
+}
