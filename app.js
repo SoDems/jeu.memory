@@ -42,7 +42,7 @@ var txt = "";
      
         for(var j =0; j < tabJeu[i].length ; j++){ /*a l'interieur de la boucle on refait une boucle car dans les 4 éléments il y a 4 éléments*//*tabJeu[i].length = parcours la ligne jusqu'a la fin de la ligne*/
             if(tabJeu[i][j] === 0){ /* si la valeur de tabJeu est égal à 0 alors le btn sera affiche*/ 
-            txt +="<button class='btn btn-primary' onClick='verif(\""+i+"-"+j+"\")'>Afficher</button>"; /*on a mis une fonction click au bouton et on lui rajoute un paramètre (1-2) par exemple, le 1 etant la ligne et la deuxième la colonne. pour rappel le i (i = 0; i< tabJeu.length; i++) est la ligne et le j j =0; j < tabJeu[i].length ; j++ la colonne */ /*concatener ("+i+" - +"j"+)= mettre bout à bout au moins deux cahine de caractères*/
+            txt +="<button class='btn btn-primary' onClick='verif(\""+i+"-"+j+"\")'>L'art</button>"; /*on a mis une fonction click au bouton et on lui rajoute un paramètre (1-2) par exemple, le 1 etant la ligne et la deuxième la colonne. pour rappel le i (i = 0; i< tabJeu.length; i++) est la ligne et le j j =0; j < tabJeu[i].length ; j++ la colonne */ /*concatener ("+i+" - +"j"+)= mettre bout à bout au moins deux cahine de caractères*/
             /*le backslash permet de désactiver les guillements pour en faire un chaine de caractères*/
             }
             else{
@@ -55,23 +55,23 @@ divResultat.innerHTML = txt;
 }
 
 function getImage(valeur){ /*on va faire un switch case. on fait une fonction getImage qui va recupere une valeur et à partir de cette valeur on va retourner l images correspndantes*/
-    var imgTxt = "image/"; /*variable qui contient le chemin*/
+    var imgTxt = "art/"; /*variable qui contient le chemin*/
     switch(valeur){
-        case 1 : imgTxt += "elephant.png";
+        case 1 : imgTxt += "bleu.png";
         break;
-        case 2 : imgTxt += "giraffe.png";
+        case 2 : imgTxt += "femme au lapin.png";
         break;
-        case 3 : imgTxt += "hippo.png";
+        case 3 : imgTxt += "fresque.png";
         break;
-        case 4 : imgTxt += "monkey.png";
+        case 4 : imgTxt += "frida.png";
         break;
-        case 5 : imgTxt += "panda.png";
+        case 5 : imgTxt += "papillon.png";
         break;
-        case 6 : imgTxt += "parrot.png";
+        case 6 : imgTxt += "peinture abstraite.png";
         break;
-        case 7 : imgTxt += "penguin.png";
+        case 7 : imgTxt += "rouge et noir.png";
         break;
-        case 8 : imgTxt += "pig.png";
+        case 8 : imgTxt += "statue.png";
         break;
         default : console.log("non pris en compte")
         }

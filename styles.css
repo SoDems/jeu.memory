@@ -3,6 +3,8 @@
    height: 100px; 
    margin: 2px; 
    text-align: center;
+   background-image: url(art/palette.png);
+   border: none;
 }
 img{
     width: 100px;
@@ -11,5 +13,35 @@ img{
     text-align: center;
 }
 .container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+body{
+    background-color: rgb(190, 174, 174);
+    width: 100%;
+}
+
+h1{
     text-align: center;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    font-weight: bold;
+    font-family: cursive;
+    background-color: honeydew;
+}
+#rejouez{
+    display: flex;
+    justify-content: center;
+}
+.bouton{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+.btns{
+    width: 150px;
+    height: 50px;
+    font-size: 27px;
+    font-family: cursive;
 }
