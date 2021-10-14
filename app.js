@@ -19,12 +19,13 @@ var tabJeu = [   /*la variable tabJeu va nous permettre ensuite de savoir si on 
     [0,0,0,0],
 ];
 
-var tabResultat = [  /*faire un tableau ac des chiffres de manière aléatoire*/
-    [1,4,3,4],
-    [1,2,3,2],
-    [7,8,6,5],
-    [8,7,5,6],
-];
+// var tabResultat = [  /*faire un tableau ac des chiffres de manière aléatoire*/
+//     [1,4,3,4],
+//     [1,2,3,2],
+//     [7,8,6,5],
+//     [8,7,5,6],
+// ];
+var tabResultat = genereTableuAleatoire();
 
 var oldSelection =[];//ancien click
 var nbAffiche = 0; /*pour savoir où on en est ds notre affichage et savoir si on est sur le premier click ou deuxième*/
@@ -111,8 +112,31 @@ function verif(bouton){ /*qui va recuperer l'element cliqué*/
             
         } else {
             oldSelection = [ligne,colonne];//ancien click
-
         }
-    }     
-    
+    }      
 }
+//etape 3 creer une fonctin qui va "mélanger" la grille en créant un tableau resultat aléatoire au lancement de la page 
+// l'objectif étant de creer une fonction qui va générer un tableau "mélangé".
+function genereTableuAleatoire(){ // a l 'inteireur on va renvoyer un tableau
+    var tab =[]; // on déclare un tableau vierge 
+    var nbImageposition = [0,0,0,0,0,0,0,0]; //nbre d'mage qu on aura ds notre tableau puisqu il faut qu elle soit en double
+    for(var i = 0 ; i < 4 ; i ++){
+        var ligne = [];
+        //pour generer les colonne
+        for(var j = 0 ; j < 4 ; j++){
+            var fin = false;
+            while(!fin){// je vais continuer tant que fin est = à false
+                var randomImage = Math.floor(Math.random() * 8); //pour generer un chiffre aleatoire entre 1et 8
+                if(nbImageposition /* 0 à 7 */[randomImage] < 2){ // pour éviter d'avoir plus de 2 images
+                    ligne.push(randomImage+1); // on vient de generer un tableau contenant 16 cases
+                    nbImageposition /* 0 à 7 */[randomImage]++; //pour acrementer la valeur
+                    fin = true; // ce qui permet de sortir de la boucle while et d'avoir trouver un des chiffres qui n'est pas present 2 fois dans nbImage position
+
+                }
+            }   
+        }
+        tab.push(ligne); //ce qui permet de rajouter une ligne au tableau qui contient que des 0
+    }
+    return tab
+}
+
