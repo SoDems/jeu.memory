@@ -19,7 +19,7 @@ var tabJeu = [   /*la variable tabJeu va nous permettre ensuite de savoir si on 
     [0,0,0,0],
 ];
 
-var tabResultat = [  /*faire un tableau ac des chiifres de manière aléatoire*/
+var tabResultat = [  /*faire un tableau ac des chiffres de manière aléatoire*/
     [1,4,3,4],
     [1,2,3,2],
     [7,8,6,5],
@@ -41,7 +41,7 @@ var txt = "";
      
         for(var j =0; j < tabJeu[i].length ; j++){ /*a l'interieur de la boucle on refait une boucle car dans les 4 éléments il y a 4 éléments*//*tabJeu[i].length = parcours la ligne jusqu'a la fin de la ligne*/
             if(tabJeu[i][j] === 0){ /* si la valeur de tabJeu est égal à 0 alors le btn sera affiche*/ 
-            txt +="<button class='btn btn-primary' onclick='verif(\""+i+"-"+j+"\")'>Afficher</button>"; /*on a mis une fonction click au bouton et on lui rajoute un paramètre (1-2) par exemple, le 1 etant la ligne et la deuxième la colonne. pour rappel le i (i = 0; i< tabJeu.length; i++) est la ligne et le j j =0; j < tabJeu[i].length ; j++ la colonne */ /*concatener ("+i+" - +"j"+)= mettre bout à bout au moins deux cahine de caractères*/
+            txt +="<button class='btn btn-primary' onClick='verif(\""+i+"-"+j+"\")'>Afficher</button>"; /*on a mis une fonction click au bouton et on lui rajoute un paramètre (1-2) par exemple, le 1 etant la ligne et la deuxième la colonne. pour rappel le i (i = 0; i< tabJeu.length; i++) est la ligne et le j j =0; j < tabJeu[i].length ; j++ la colonne */ /*concatener ("+i+" - +"j"+)= mettre bout à bout au moins deux cahine de caractères*/
             /*le backslash permet de désactiver les guillements pour en faire un chaine de caractères*/
             }
             else{
@@ -87,7 +87,7 @@ function getImage(valeur){ /*on va faire un switch case. on fait une fonction ge
 
     /*ATTENTION = dans las tableaux, la première case a une valeur de 0*/
 
-
+console.log(afficherTableau);
 function verif(bouton){ /*qui va recuperer l'element cliqué*/
     if(ready){
         nbAffiche++;  //on va acrementer des lors qu 'on clique sur 1 btn
@@ -106,15 +106,13 @@ function verif(bouton){ /*qui va recuperer l'element cliqué*/
                 afficherTableau();
                 ready = true; // tu peux cliquer sur un autre btn
                 nbAffiche = 0;// qd on a finit la verification on réinitialise  nbAffiche à 0 ce qui permet de relancer une vague de click et de vérification
-                oldSelection = [ligne][colonne];
-            },1000)//une seconde
+                oldSelection = [ligne,colonne];
+            },500)//une seconde
             
         } else {
-            oldSelection = [ligne][colonne];//ancien click
+            oldSelection = [ligne,colonne];//ancien click
 
         }
-    
-    /*on va faire une verification pour voir si les images sont identiques*/
     }     
     
 }
